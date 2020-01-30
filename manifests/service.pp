@@ -19,6 +19,10 @@ class qpid::service {
       $limits = {'LimitNOFILE' => 1} # https://github.com/camptocamp/puppet-systemd/pull/80
     }
 
+    class { 'systemd':
+      purge_dropin_dirs => false,
+    }
+
     systemd::service_limits { 'qpidd.service':
       ensure          => $ensure_limit,
       restart_service => false,
